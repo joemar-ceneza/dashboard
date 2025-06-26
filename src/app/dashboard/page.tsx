@@ -11,13 +11,17 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const res = await fetch(`${API_URL}/api/auth/me`, {
-        credentials: "include",
-      });
+      try {
+        const res = await fetch(`${API_URL}/api/auth/me`, {
+          credentials: "include",
+        });
 
-      if (res.ok) {
-        setLoading(false);
-      } else {
+        if (res.ok) {
+          setLoading(false);
+        } else {
+          router.push("/login");
+        }
+      } catch (err) {
         router.push("/login");
       }
     };
