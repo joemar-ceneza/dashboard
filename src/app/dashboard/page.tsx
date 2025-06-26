@@ -21,8 +21,9 @@ export default function DashboardPage() {
         } else {
           router.push("/login");
         }
-      } catch (err) {
+      } catch (error) {
         router.push("/login");
+        console.error("Silent auth check failed", error);
       }
     };
 

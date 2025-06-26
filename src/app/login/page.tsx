@@ -40,8 +40,8 @@ export default function LoginPage() {
         if (res.ok) {
           router.push("/dashboard");
         }
-      } catch (err) {
-        console.error("Silent auth check failed", err);
+      } catch (error) {
+        console.error("Silent auth check failed", error);
       }
     };
 
