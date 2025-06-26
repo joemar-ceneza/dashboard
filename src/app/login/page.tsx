@@ -32,12 +32,16 @@ export default function LoginPage() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const res = await fetch(`${API_URL}/api/auth/me`, {
-        credentials: "include",
-      });
+      try {
+        const res = await fetch(`${API_URL}/api/auth/me`, {
+          credentials: "include",
+        });
 
-      if (res.ok) {
-        router.push("/dashboard");
+        if (res.ok) {
+          router.push("/dashboard");
+        }
+      } catch (err) {
+        console.error("Silent auth check failed", err);
       }
     };
 
