@@ -9,10 +9,12 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const router = useRouter();
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -30,7 +32,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch(`${API_URL}/api/auth/me`, {
         credentials: "include",
       });
 
