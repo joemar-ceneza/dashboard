@@ -7,9 +7,11 @@ export default function DashboardPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
   useEffect(() => {
     const checkAuth = async () => {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch(`${API_URL}/api/auth/me`, {
         credentials: "include",
       });
 
@@ -24,7 +26,7 @@ export default function DashboardPage() {
   }, [router]);
 
   const handleLogout = async () => {
-    const res = await fetch("http://localhost:5000/api/auth/logout", {
+    const res = await fetch(`${API_URL}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
